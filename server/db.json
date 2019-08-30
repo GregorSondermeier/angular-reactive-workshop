@@ -95,7 +95,7 @@
     {
       "id": "1",
       "title": "Project One",
-      "details": "This is a sample project",
+      "details": "This is a sample project One\n",
       "percentComplete": 20,
       "approved": false,
       "startDate": null,
@@ -106,7 +106,7 @@
     {
       "id": "2",
       "title": "Project Two",
-      "details": "This is a sample project",
+      "details": "This is a sample project Description",
       "percentComplete": 40,
       "approved": false,
       "startDate": null,

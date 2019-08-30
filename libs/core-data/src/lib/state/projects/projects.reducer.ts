@@ -32,3 +32,43 @@ const updateProject = (projects, project) => projects.map(p => {
   return p.id === project.id ? Object.assign({}, project) : p;
 });
 const deleteProject = (projects, project) => projects.filter(w => project.id !== w.id);
+
+// 01 define the shape of the state
+export interface ProjectsState {
+  projects: Project[];
+  selectedProjectId: string | null;
+}
+
+// 02 define the initial state
+export const initialState: ProjectsState = {
+  projects: initialProjects,
+  selectedProjectId: null,
+};
+
+// 03 build the MOST simplest reducer
+export function projectsReducers(state = initialState, action): ProjectsState {
+  switch(action.type) {
+    case 'select':
+      return {
+        selectedProjectId: action.payload,
+        projects: state.projects
+      };
+    case 'create':
+      return {
+        selectedProjectId: state.selectedProjectId,
+        projects: createProject(state.projects, action.payload)
+      };
+    case 'update':
+      return {
+        selectedProjectId: state.selectedProjectId,
+        projects: updateProject(state.projects, action.payload)
+      };
+    case 'delete':
+      return {
+        selectedProjectId: state.selectedProjectId,
+        projects: deleteProject(state.projects, action.payload)
+      };
+    default:
+      return state;
+  }
+}

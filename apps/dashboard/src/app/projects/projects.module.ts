@@ -8,6 +8,7 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { MaterialModule } from '@workshop/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CoreDataModule } from '@workshop/core-data';
+import { StateModule } from '../../../../../libs/core-data/src/lib/state/state.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CoreDataModule } from '@workshop/core-data';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    CoreDataModule
+    CoreDataModule,
+    StateModule
   ],
   declarations: [
     ProjectsComponent,
