@@ -24,7 +24,9 @@ export class ProjectsEffects {
           map((res: Project[]) => new LoadedAllProjects(res))
         )
     },
-    onError: () => {}
+    onError: (action: LoadAllProjects, error) => {
+      console.error(error);
+    }
   });
 
   @Effect()
@@ -35,7 +37,9 @@ export class ProjectsEffects {
           map((res: Project) => new AddedProject(res))
         );
     },
-    onError: () => {}
+    onError: (action: AddProject, error) => {
+      console.error(error);
+    }
   });
 
   constructor(
