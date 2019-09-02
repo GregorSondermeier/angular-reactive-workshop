@@ -2,6 +2,7 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 
 import * as fromCustomers from './customers/customers.reducer';
 import * as fromProjects from './projects/projects.reducer';
+import { Project } from '../..';
 
 // updated the shape of the entire application state
 export interface AppState {
@@ -22,6 +23,26 @@ export const reducers: ActionReducerMap<AppState> = {
   projects: fromProjects.projectsReducers,
 };
 
+export const selectCurrentProjectId = createSelector(
+  selectProjectState,
+  fromProjects.getSelectedProjectId
+);
+
+const emptyProject: Project = {
+  id: null,
+  title: '',
+  details: '',
+  percentComplete: 0,
+  approved: false,
+  customerId: null
+};
+
+export const selectCurrentProject = createSelector(
+  selectProjectEntities,
+  selectCurrentProjectId,
+  (projectEntities, projectId) => projectId ? projectEntities[projectId] : emptyProject
+);
+
 // -------------------------------------------------------------------
 // CUSTOMERS SELECTORS
 // -------------------------------------------------------------------
@@ -32,3 +53,18 @@ export const selectAllCustomers = createSelector(
   fromCustomers.selectAllCustomers
 );
 
+// -------------------------------------------------------------------
+// COMBINED / COMPUTED SELECTORS
+// -------------------------------------------------------------------
+export const selectCustomersProjects = createSelector(
+  selectAllCustomers,
+  selectAllProjects,
+  (customers, projects) => {
+    customers.map(customer => {
+      return Object.assign({}, {
+        ...customer,
+        projects: projects.filter(project => project.customerId === customer.id)
+      })
+    })
+  }
+);
