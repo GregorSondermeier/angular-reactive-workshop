@@ -10,7 +10,8 @@ import {
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  styleUrls: ['./projects.component.scss'],
+  providers: [ ProjectsFacade ]
 })
 export class ProjectsComponent implements OnInit {
   projects$: Observable<Project[]>;
