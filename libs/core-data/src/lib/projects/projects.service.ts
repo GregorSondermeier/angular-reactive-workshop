@@ -10,7 +10,7 @@ import { NotificationsService } from '../notifications/notifications.service';
   providedIn: 'root'
 })
 export class ProjectsService {
-  model = 'projects'
+  model = 'projects';
 
   constructor(
     private http: HttpClient,

@@ -35,7 +35,6 @@ export class ProjectsComponent implements OnInit {
     private customerService: CustomersService,
     private store: Store<ProjectsState>,
     private ns: NotificationsService) {
-
     this.projects$ = store.pipe(select(selectAllProjects));
   }
 
@@ -62,7 +61,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    this.store.dispatch(new LoadAllProjects(initialProjects))
+    this.store.dispatch(new LoadAllProjects());
   }
 
   saveProject(project) {

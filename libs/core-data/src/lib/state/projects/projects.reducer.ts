@@ -51,11 +51,11 @@ export const initialState: ProjectsState = adapter.getInitialState({
 // 04 build the MOST simplest reducer
 export function projectsReducers(state = initialState, action): ProjectsState {
   switch(action.type) {
-    case ProjectsActionTypes.LoadAll:
+    case ProjectsActionTypes.LoadedAll:
       return adapter.addMany(action.payload, state);
     case ProjectsActionTypes.Select:
       return Object.assign({}, state, { selectedProjectId: action.payload });
-    case ProjectsActionTypes.Add:
+    case ProjectsActionTypes.Added:
       return adapter.addOne(action.payload, state);
     case ProjectsActionTypes.Update:
       return adapter.updateOne(action.payload, state);
